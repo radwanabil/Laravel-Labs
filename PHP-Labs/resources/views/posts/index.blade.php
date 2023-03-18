@@ -26,9 +26,13 @@
             <td>{{$post['posted_by']}}</td>
             <td>{{$post['created_at']}}</td>
             <td>
-                <a href="{{route('posts.show', $post['id'])}}" class="btn btn-info">View</a>
-                <a href="{{route('posts.edit', $post['id'])}}" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
+
+                <x-button type="info" :href="route('posts.show',$post['id'])">
+                    view
+                </x-button>
+                <x-button type="primary" :href="route('posts.edit',$post['id'])">edit</x-button>
+                <x-button type="danger">delete</x-button>
+
             </td>
         </tr>
         @endforeach
