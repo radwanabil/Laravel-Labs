@@ -23,7 +23,7 @@
 
         <h5 class="card-title">Email: {{$post->user->email}}</h5>
         <p class="card-text">Created At:
-            {{ \Carbon\Carbon::parse( $post->created_at )->format('l jS \\of F Y h:i:s A'); }}</p>
+            {{( $post->created_at )->format('l jS \\of F Y h:i:s A'); }}</p>
     </div>
 </div>
 <div class="card">

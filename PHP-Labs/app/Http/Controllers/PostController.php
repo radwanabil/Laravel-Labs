@@ -22,11 +22,11 @@ class PostController extends Controller
         return view('posts.index', ['posts' => $allPosts]);
     }
 
-    public function show($id)
+    public function show($post)
     {
      
 
-        $post = Post::where('id', $id)->first(); //Post model object ... select * from posts where id = 1 limit 1;
+        $post = Post::where('id', $post)->first(); //Post model object ... select * from posts where id = 1 limit 1;
         $users = User::all();
 
 
@@ -39,36 +39,32 @@ class PostController extends Controller
         return view('posts.create', ['users' => $users]);
     
     }
-    public function edit($id){
-        $post= Post::find($id);
+    public function edit($post){
+        $post= Post::find($post);
         $users = User::all();
         return view('posts.edit', ['users' => $users], ['post' => $post]);
     }
     public function store(Request $request){
-        $title = request()->title;
-        $description = request()->description;
-        $postCreator = request()->creator;
         Post::create([
-            'title' => $title,
-            'description' => $description,
-            'user_id' => $postCreator,
+            'title' => request()->title,
+            'description' => request()->description,
+            'user_id' => request()->creator,
         ]);
         return to_route('posts.index');
     
     }
-    public function update($id){
-        $title = request()->title;
-        $description = request()->description;
-        $postCreator = request()->creator;
-        Post::where('id', $id)->update([
-            'title' => $title,
-            'description' => $description,
-            'user_id' => $postCreator,
+    public function update($post){
+        Post::where('id', $post)->update([
+            'title' => request()->title,
+            'description' => request()->description,
+            'user_id' => request()->creator,
         ]);
        return to_route('posts.index');
     }
-    public function delete($id){
-        Post::where('id', $id)->delete();
+    public function destroy($post){
+        $Foundpost = Post::find($post);
+        $Foundpost->comments->destroy();
+        Post::where('id', $Foundpost)->delete();
         return to_route('posts.index');
     }
     public function restore()
