@@ -23,3 +23,6 @@ Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.upda
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{post}', [PostController::class,'delete'])->name('posts.delete');
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+Route::patch('/posts/restore',[PostController::class,'restore'])->name('posts.restore');

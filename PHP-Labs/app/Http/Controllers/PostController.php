@@ -8,9 +8,11 @@ use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PostController extends Controller
 {
+    use SoftDeletes;
     public function index()
     {
       
@@ -68,5 +70,12 @@ class PostController extends Controller
     public function delete($id){
         Post::where('id', $id)->delete();
         return to_route('posts.index');
+    }
+    public function restore()
+    {
+        $posts = Post::onlyTrashed();
+        $posts->restore();
+              return to_route('posts.index');
+        
     }
 }

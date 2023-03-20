@@ -71,8 +71,24 @@
                 </div>
             </div>
         </div>
-        @endforeach
-        @else
-        <div>No comments yet</div>
-        @endif
-        @endsection
+        <form method="POST" action="{{ route('comments.destroy', $comment->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
+    <form method="POST" action="{{ route('comments.update', $comment) }}" id="edit-comment-form-{{$comment->id}}">
+        @csrf
+        @method('PUT')
+        <div class="form-group">
+            <label for="body">Comment</label>
+            <textarea class="form-control" id="body" name="body" rows="3">{{$comment->body}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+    @endforeach
+    @else
+    <div>No comments yet</div>
+    @endif
+    @endsection

@@ -6,6 +6,7 @@
 @section('content')
 <div class="text-center">
     <a href="{{route('posts.create')}}" class="mt-4 btn btn-success">Create Post</a>
+    <a href="{{route('posts.restore')}}"></a>
 </div>
 <table class="table mt-4">
     <thead>
