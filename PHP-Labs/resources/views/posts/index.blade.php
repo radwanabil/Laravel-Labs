@@ -20,18 +20,29 @@
     <tbody>
 
         @foreach($posts as $post)
+
         <tr>
-            <td>{{$post['id']}}</td>
-            <td>{{$post['title']}}</td>
-            <td>{{$post['posted_by']}}</td>
-            <td>{{$post['created_at']}}</td>
+            <td>{{$post->id}}</td>
+            <td>{{$post->title}}</td>
+            @if($post->user)
+            <td>{{$post->user->name}}</td>
+            @else
+            <td>Not Found</td>
+            @endif
+            <td>{{ \Carbon\Carbon::parse( $post->created_at )->toDateString(); }}</td>
             <td>
 
-                <x-button type="info" :href="route('posts.show',$post['id'])">
+                <x-button type="info" :href="route('posts.show', $post->id)">
                     view
                 </x-button>
-                <x-button type="primary" :href="route('posts.edit',$post['id'])">edit</x-button>
-                <x-button type="danger">delete</x-button>
+                <x-button type="primary" :href="route('posts.edit',$post->id)">edit</x-button>
+                <form style="display: inline" method="POST" action="{{ route('posts.delete', [$post['id']]) }}">
+                    @method('DELETE')
+                    @csrf
+                    <button onclick="return confirm('Are you sure you want to delete this post?');"
+                        class="btn btn-danger">Delete</button>
+                </form>
+
 
             </td>
         </tr>
@@ -41,5 +52,5 @@
 
     </tbody>
 </table>
-
+{{$posts->links()}}
 @endsection
