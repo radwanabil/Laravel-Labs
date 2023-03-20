@@ -61,7 +61,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                 <form style="display: inline" method="POST"
-                                    action="{{ route('posts.destroy', [$post['id']]) }}">
+                                    action="{{ route('posts.destroy', $post->id) }}">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-primary"

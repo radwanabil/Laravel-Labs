@@ -62,9 +62,9 @@ class PostController extends Controller
        return to_route('posts.index');
     }
     public function destroy($post){
-        $Foundpost = Post::find($post);
-        $Foundpost->comments->destroy();
-        Post::where('id', $Foundpost)->delete();
+        $Foundpost = Post::findOrFail($post);
+        $Foundpost->Comments()->delete();
+        $Foundpost->delete();
         return to_route('posts.index');
     }
     public function restore()
