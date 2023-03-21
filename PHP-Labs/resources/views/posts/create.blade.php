@@ -3,7 +3,7 @@
 @section('title') Show @endsection
 @section('content')
 
-<form method="POST" action="{{ route('posts.store') }}">
+<form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3 mt-3">
@@ -34,16 +34,10 @@
             @endforeach
         </select>
     </div>
-
+    <label class="form-check-label">Post Image</label>
+    <input class="form-control w-50" type="file" id="formFile" name="image">
+    <br>
     <button type="submit" class="btn btn-success">Create</button>
 </form>
-<!-- @if ($errors->any())
-<div class="alert alert-danger">
-    <ul>
-        @foreach ($errors->all() as $error)
-        <li>{{ $error }}</li>
-        @endforeach
-    </ul>
-</div>
-@endif -->
+
 @endsection

@@ -32,6 +32,9 @@
 
         </select>
     </div>
+    <label class="form-check-label">Post Image</label>
+    <input class="form-control w-50" type="file" id="formFile" name="image">
+    <br>
     <button type="submit" class="btn btn-success">Update</button>
 </form>
 

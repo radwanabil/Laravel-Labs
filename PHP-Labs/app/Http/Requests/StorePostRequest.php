@@ -28,6 +28,7 @@ class StorePostRequest extends FormRequest
             'description'=>['required','min:10'],
             // 'slug'=>'unique:posts',
             'user_id' => ['required|exists:users,id'],
+            'image'=> ['mimes:jpg,jpeg,png,gif'],
         ];
     }
 
