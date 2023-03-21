@@ -13,14 +13,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Jobs\PruneOldPostsJob;
+
+PruneOldPostsJob::dispatch();
 
 class PostController extends Controller
 {
     // use SoftDeletes;
+
     
     public function index()
     {
-      
+        
  
         $allPosts = Post::paginate(10);
         Paginator::useBootstrap();
@@ -51,7 +55,7 @@ class PostController extends Controller
         return view('posts.edit', ['users' => $users], ['post' => $post]);
     }
     public function store(StorePostRequest $request){
-      
+   
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imagePath = $image->storeAs('public/image', $image->getClientOriginalName());
@@ -104,4 +108,5 @@ class PostController extends Controller
               return to_route('posts.index');
         
     }
+
 }
