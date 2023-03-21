@@ -70,6 +70,7 @@ class PostController extends Controller
     }
     public function update(StorePostRequest $request,$post){
         if ($request->hasFile('image')) {
+            
             $image = $request->file('image');
             $imagePath = $image->storeAs('public/image', $image->getClientOriginalName());
             $imageName = $image->getClientOriginalName();
@@ -83,7 +84,15 @@ class PostController extends Controller
        return to_route('posts.index');
     }
     public function destroy($post){
+
+        
         $Foundpost = Post::findOrFail($post);
+             
+        if ($Foundpost->image) {
+       
+           $imagePath = 'public/image/' . $Foundpost->image; 
+            Storage::delete($imagePath);
+        }
         $Foundpost->Comments()->delete();
         $Foundpost->delete();
         return to_route('posts.index');

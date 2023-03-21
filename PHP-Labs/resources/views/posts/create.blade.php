@@ -36,6 +36,9 @@
     </div>
     <label class="form-check-label">Post Image</label>
     <input class="form-control w-50" type="file" id="formFile" name="image">
+    @if($errors->has('image'))
+    <div class="alert alert-danger error w-50 h-25 mt-2">This type is not supported</div>
+    @endif
     <br>
     <button type="submit" class="btn btn-success">Create</button>
 </form>

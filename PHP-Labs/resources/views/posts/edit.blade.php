@@ -32,8 +32,14 @@
 
         </select>
     </div>
-    <label class="form-check-label">Post Image</label>
+    <label class="form-check-label">Post Image</label><br>
+    @if($post->image)
+    <label for="exampleFormControlInput1" class="form-label" style="font-weight: 700;">{{$post->image}}</label>
+    @endif
     <input class="form-control w-50" type="file" id="formFile" name="image">
+    @if($errors->has('image'))
+    <div class="alert alert-danger error w-50 h-25 mt-2">This type is not supported</div>
+    @endif
     <br>
     <button type="submit" class="btn btn-success">Update</button>
 </form>
