@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -9,10 +10,12 @@ use App\Models\Comment;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 
 class PostController extends Controller
 {
-    use SoftDeletes;
+    // use SoftDeletes;
+    
     public function index()
     {
       
@@ -34,6 +37,7 @@ class PostController extends Controller
     }
     
     public function create(){
+        
         $users = User::all();
 
         return view('posts.create', ['users' => $users]);
@@ -44,16 +48,17 @@ class PostController extends Controller
         $users = User::all();
         return view('posts.edit', ['users' => $users], ['post' => $post]);
     }
-    public function store(Request $request){
+    public function store(StorePostRequest $request){
+
         Post::create([
-            'title' => request()->title,
-            'description' => request()->description,
-            'user_id' => request()->creator,
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => $request->creator,
         ]);
         return to_route('posts.index');
     
     }
-    public function update($post){
+    public function update(StorePostRequest $request,$post){
         Post::where('id', $post)->update([
             'title' => request()->title,
             'description' => request()->description,

@@ -8,6 +8,7 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
+ 
         Comment::create([
             'user_id' => $request->user_id,
             'body' => $request->body,

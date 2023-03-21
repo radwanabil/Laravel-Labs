@@ -81,6 +81,7 @@
     <form method="POST" action="{{ route('comments.update', $comment) }}" id="edit-comment-form-{{$comment->id}}">
         @csrf
         @method('PUT')
+
         <div class="form-group">
             <label for="body">Comment</label>
             <textarea class="form-control" id="body" name="body" rows="3">{{$comment->body}}</textarea>
@@ -91,4 +92,5 @@
     @else
     <div>No comments yet</div>
     @endif
+
     @endsection
