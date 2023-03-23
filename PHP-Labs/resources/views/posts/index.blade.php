@@ -10,7 +10,6 @@
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <div class="text-center">
     <a href="{{route('posts.create')}}" class="mt-4 btn btn-success">Create Post</a>
-    <a href="{{route('posts.restore')}}"></a>
 </div>
 <table class="table mt-4">
     <thead>
@@ -46,9 +45,13 @@
                     view
                 </x-button>
                 <x-button type="primary" :href="route('posts.edit',$post->id)">edit</x-button>
-
+                @if($post->trashed())
+                <x-button type="danger" :href="route('posts.restore',[$post->id])">restore</x-button>
+                @else
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#exampleModal{{$post->id}}">Delete</button>
+
+                @endif
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -85,5 +88,5 @@
     </tbody>
 </table>
 
-{{$posts->links()}}
+{{ $posts->links('pagination::bootstrap-5') }}
 @endsection

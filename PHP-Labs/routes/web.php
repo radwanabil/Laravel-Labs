@@ -23,6 +23,7 @@ Route::group(['middleware' =>[ 'auth']],function(){
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    Route::get('/posts/restore/{post}',[PostController::class,'restore'])->name('posts.restore');
 
 });
 Route::group(['middleware' =>[ 'auth']] , function(){
@@ -33,7 +34,7 @@ Route::group(['middleware' =>[ 'auth']] , function(){
 Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
-Route::patch('/posts/restore',[PostController::class,'restore'])->name('posts.restore');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

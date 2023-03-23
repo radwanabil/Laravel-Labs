@@ -19,15 +19,15 @@ PruneOldPostsJob::dispatch();
 
 class PostController extends Controller
 {
-    // use SoftDeletes;
+   use SoftDeletes;
 
     
     public function index()
     {
         
  
-        $allPosts = Post::paginate(10);
-        Paginator::useBootstrap();
+        $allPosts = Post::withTrashed()->paginate(5);
+
         return view('posts.index', ['posts' => $allPosts]);
     }
 
@@ -101,11 +101,11 @@ class PostController extends Controller
         $Foundpost->delete();
         return to_route('posts.index');
     }
-    public function restore()
+    public function restore($post)
     {
-        $posts = Post::onlyTrashed();
-        $posts->restore();
-              return to_route('posts.index');
+        $post = Post::withTrashed()->find($post);
+        $post->restore();
+        return to_route('posts.index');
         
     }
 
