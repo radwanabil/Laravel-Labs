@@ -41,6 +41,9 @@
     @endif
     <br>
     <button type="submit" class="btn btn-success">Create</button>
+    @error('user_id')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
 </form>
 
 @endsection

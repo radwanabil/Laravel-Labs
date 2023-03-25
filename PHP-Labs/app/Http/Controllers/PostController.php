@@ -14,6 +14,9 @@ use Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Jobs\PruneOldPostsJob;
+use App\Rules\MaxPosts;
+
+use Illuminate\Support\Facades\Validator;
 
 PruneOldPostsJob::dispatch();
 
@@ -55,6 +58,16 @@ class PostController extends Controller
         return view('posts.edit', ['users' => $users], ['post' => $post]);
     }
     public function store(StorePostRequest $request){
+        $userId = $request->creator;
+        $validator = Validator::make(['user_id' => $userId], [
+            'user_id' => [new MaxPosts($userId)],
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
    
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -65,7 +78,7 @@ class PostController extends Controller
         Post::create([
             'title' => $request->title,
             'description' => $request->description,
-            'user_id' => $request->creator,
+            'user_id' =>  $userId,
             'image'=> isset($imagePath) ? $imageName : null,
     
         ]);

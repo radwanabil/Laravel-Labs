@@ -33,8 +33,11 @@
         </select>
     </div>
     <label class="form-check-label">Post Image</label><br>
-    @if($post->image)
-    <label for="exampleFormControlInput1" class="form-label" style="font-weight: 700;">{{$post->image}}</label>
+
+    @if(isset($post->image))
+
+    <img src="{{ Storage::url('public/image/' . $post->image) }}" alt="{{ $post->image }}"
+        style="width: 25%; height:25%">
     @endif
     <input class="form-control w-50" type="file" id="formFile" name="image">
     @if($errors->has('image'))

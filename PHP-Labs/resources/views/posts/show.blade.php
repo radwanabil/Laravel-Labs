@@ -24,9 +24,16 @@
         <h5 class="card-title">Email: {{$post->user->email}}</h5>
         <p class="card-text">Created At:
             {{( $post->created_at )->format('l jS \\of F Y h:i:s A'); }}</p>
+        @if(isset($post->image))
+        <h5 class="card-title">Image:</h5>
+
+        <img src="{{ Storage::url('public/image/' . $post->image) }}" alt="{{ $post->image }}"
+            style="width: 25%; height:25%">
+        @endif
+
     </div>
 </div>
-<div class="card">
+<div class=" card">
     <div class="card-header">
         Comments
     </div>

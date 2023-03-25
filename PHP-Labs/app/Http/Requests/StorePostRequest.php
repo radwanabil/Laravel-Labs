@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\MaxPosts;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 class StorePostRequest extends FormRequest
@@ -27,7 +28,7 @@ class StorePostRequest extends FormRequest
             'title'=>['required','min:3','unique:posts,title,'.$this->post],
             'description'=>['required','min:10'],
             // 'slug'=>'unique:posts',
-            'user_id' => ['required|exists:users,id'],
+            'user_id' => ['required|exists:users,id',[new MaxPosts($this->creator)]],
             'image'=> ['mimes:jpg,jpeg,png,gif'],
         ];
     }
