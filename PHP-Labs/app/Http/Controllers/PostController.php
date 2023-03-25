@@ -59,15 +59,15 @@ class PostController extends Controller
     }
     public function store(StorePostRequest $request){
         $userId = $request->creator;
-        $validator = Validator::make(['user_id' => $userId], [
-            'user_id' => [new MaxPosts($userId)],
-        ]);
+        // $validator = Validator::make(['user_id' => $userId], [
+        //     'user_id' => [new MaxPosts($userId)],
+        // ]);
     
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
    
         if ($request->hasFile('image')) {
             $image = $request->file('image');
