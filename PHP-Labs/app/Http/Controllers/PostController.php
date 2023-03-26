@@ -30,8 +30,8 @@ class PostController extends Controller
     public function index()
     {
         
- 
-        $allPosts = Post::withTrashed()->paginate(5);
+        
+        $allPosts = Post::withTrashed()->with('user')->paginate(5);
 
         return view('posts.index', ['posts' => $allPosts]);
     }
@@ -130,7 +130,29 @@ class PostController extends Controller
 
     public function githubCallBack()
     {
-        $userData = Socialite::driver('github')->user();
+        $userData = Socialite::driver('github')->stateless()->user();
+        $user = User::where('email', $userData->email)->first();
+        if ($user) {
+            Auth::login($user);
+            return to_route('posts.index');
+            }
+            $user = new User();
+            $user->name = $userData->name;
+            $user->email = $userData->email;
+            $user->password = Hash::make(Str::random(24));
+            $user->save();
+            Auth::login($user);
+            return to_route('posts.index');
+        
+    }
+    public function googleRedirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleCallBack()
+    {
+        $userData = Socialite::driver('google')->stateless()->user();
         $user = User::where('email', $userData->email)->first();
         if ($user) {
             Auth::login($user);

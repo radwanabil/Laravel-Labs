@@ -46,3 +46,6 @@ Auth::routes();
 
 Route::get('/auth/github/redirect',[PostController::class,'githubRedirect'])->name('githubLogin');
 Route::get('/auth/github/callback',[PostController::class,'githubCallBack']);
+
+Route::get('/auth/google/redirect',[PostController::class,'googleRedirect'])->name('googleLogin');
+Route::get('/auth/google/callback',[PostController::class,'googleCallBack']);
