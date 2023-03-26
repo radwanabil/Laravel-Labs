@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Jobs\PruneOldPostsJob;
 use App\Rules\MaxPosts;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 PruneOldPostsJob::dispatch();
 
 class PostController extends Controller
@@ -121,5 +123,26 @@ class PostController extends Controller
         return to_route('posts.index');
         
     }
+    public function githubRedirect()
+    {
+        return Socialite::driver('github')->redirect();
+    }
 
+    public function githubCallBack()
+    {
+        $userData = Socialite::driver('github')->user();
+        $user = User::where('email', $userData->email)->first();
+        if ($user) {
+            Auth::login($user);
+            return to_route('posts.index');
+            }
+            $user = new User();
+            $user->name = $userData->name;
+            $user->email = $userData->email;
+            $user->password = Hash::make(Str::random(24));
+            $user->save();
+            Auth::login($user);
+            return to_route('posts.index');
+        
+    }
 }

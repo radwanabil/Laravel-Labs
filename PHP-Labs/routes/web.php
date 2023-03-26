@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+//use Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +43,6 @@ Route::put('/comments/{comment}', [CommentController::class, 'update'])->name('c
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/auth/github/redirect',[PostController::class,'githubRedirect'])->name('githubLogin');
+Route::get('/auth/github/callback',[PostController::class,'githubCallBack']);
