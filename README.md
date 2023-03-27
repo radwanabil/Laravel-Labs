@@ -59,7 +59,6 @@ The project is licensed under the [MIT License](https://opensource.org/licenses/
 
 ## Demo Video
 [Watch the video](https://youtu.be/SjQtdKdgKw0)
-[![Final video of fixing issues in your code in VS Code]
 (https://img.youtube.com/vi/JLMbpiywVxQ/maxresdefault.jpg)]
 (https://youtu.be/SjQtdKdgKw0)
 
