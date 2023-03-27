@@ -58,9 +58,6 @@ To use the website:
 The project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Demo Video
-[Watch the video](https://youtu.be/SjQtdKdgKw0)
-(https://img.youtube.com/vi/JLMbpiywVxQ/maxresdefault.jpg)]
-(https://youtu.be/SjQtdKdgKw0)
 [![Watch it from here](https://img.youtube.com/vi/SjQtdKdgKw0/0.jpg)](https://www.youtube.com/watch?v=SjQtdKdgKw0)
 
 
