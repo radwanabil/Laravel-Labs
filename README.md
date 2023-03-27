@@ -55,6 +55,8 @@ To use the website:
 
 The project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
+## Demo Video
+[Watch the video](https://youtu.be/SjQtdKdgKw0)
 
 
 
