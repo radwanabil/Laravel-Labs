@@ -24,13 +24,13 @@ To install the project:
 
 2. Install dependencies:
 
-3. Set up a MySQL database and update the `.env` file with the database credentials:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=[database-name]
-DB_USERNAME=[database-username]
-DB_PASSWORD=[database-password]
+3. Set up a MySQL database and update the `.env` file with the database credentials:<br>
+DB_CONNECTION=mysql<br>
+DB_HOST=127.0.0.1<br>
+DB_PORT=3306<br>
+DB_DATABASE=[database-name]<br>
+DB_USERNAME=[database-username]<br>
+DB_PASSWORD=[database-password]<br>
 
 4. Run migrations:
 php artisan migrate
