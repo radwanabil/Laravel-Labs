@@ -1,6 +1,6 @@
-# Laravel Labs
+# Laravel Blog
 
-Laravel Labs is a blog website built using Laravel, allowing users to create, edit, and delete posts, add comments to posts, and log in and register using GitHub and Google. The website also features validation for post titles, descriptions, and image types.
+Laravel Blog is a blog website built using Laravel, allowing users to create, edit, and delete posts, add comments to posts, and log in and register using GitHub and Google. The website also features validation for post titles, descriptions, and image types.
 
 ## Features
 
