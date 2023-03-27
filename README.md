@@ -10,7 +10,7 @@ Laravel Blog is a blog website built using Laravel, allowing users to create, ed
 - Validation for post title, description, and image type
 - Login and registration using GitHub and Google
 - Follows resource naming convention for routes
-- ![image](https://user-images.githubusercontent.com/65567343/227955282-eabb2355-51e3-46c0-8d52-ff92ddbe16c4.png)
+![image](https://user-images.githubusercontent.com/65567343/227955282-eabb2355-51e3-46c0-8d52-ff92ddbe16c4.png)
 
 
 ## Built with
